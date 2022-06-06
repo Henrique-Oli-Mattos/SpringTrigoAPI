@@ -10,17 +10,38 @@ public class Receita {
     private String nome;
     private String igredientes;
     private String modoPreparo;
+    private String descricao;
+    private String img;
     private String filtro;
+
+    public Receita(String nome, String descricao, String igredientes, String modoPreparo, String filtro, String img) {
+        this.id = id;
+        this.nome = nome;
+        this.igredientes = igredientes;
+        this.modoPreparo = modoPreparo;
+        this.descricao = descricao;
+        this.img = img;
+        this.filtro = filtro;
+    }
 
     public Receita(){
 
     }
     
-    public Receita(String nome, String igredientes, String modoPreparo, String filtro) {
-        this.nome = nome;
-        this.igredientes = igredientes;
-        this.modoPreparo = modoPreparo;
-        this.filtro = filtro;
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
 
     public Long getId() {
@@ -64,18 +85,14 @@ public class Receita {
     }
 
     @Override
-    public String toString() {
-        return "receita [filtro=" + filtro + ", id=" + id + ", igredientes=" + igredientes + ", modoPreparo="
-                + modoPreparo + ", nome=" + nome + "]";
-    }
-
-    @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
+        result = prime * result + ((descricao == null) ? 0 : descricao.hashCode());
         result = prime * result + ((filtro == null) ? 0 : filtro.hashCode());
         result = prime * result + ((id == null) ? 0 : id.hashCode());
         result = prime * result + ((igredientes == null) ? 0 : igredientes.hashCode());
+        result = prime * result + ((img == null) ? 0 : img.hashCode());
         result = prime * result + ((modoPreparo == null) ? 0 : modoPreparo.hashCode());
         result = prime * result + ((nome == null) ? 0 : nome.hashCode());
         return result;
@@ -90,6 +107,11 @@ public class Receita {
         if (getClass() != obj.getClass())
             return false;
         Receita other = (Receita) obj;
+        if (descricao == null) {
+            if (other.descricao != null)
+                return false;
+        } else if (!descricao.equals(other.descricao))
+            return false;
         if (filtro == null) {
             if (other.filtro != null)
                 return false;
@@ -105,6 +127,11 @@ public class Receita {
                 return false;
         } else if (!igredientes.equals(other.igredientes))
             return false;
+        if (img == null) {
+            if (other.img != null)
+                return false;
+        } else if (!img.equals(other.img))
+            return false;
         if (modoPreparo == null) {
             if (other.modoPreparo != null)
                 return false;
@@ -116,6 +143,12 @@ public class Receita {
         } else if (!nome.equals(other.nome))
             return false;
         return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Receita [descricao=" + descricao + ", filtro=" + filtro + ", id=" + id + ", igredientes=" + igredientes
+                + ", img=" + img + ", modoPreparo=" + modoPreparo + ", nome=" + nome + "]";
     }
     
 }
